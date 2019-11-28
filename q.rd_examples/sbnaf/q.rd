@@ -1,28 +1,28 @@
 <resource schema="sbnaf">
 	<meta name="title">Small Bodies Near and Far</meta>
 	<meta name="description" format="plain">
-blabla </meta>
+SBNAF public database of thermal infrared observations of small bodies in the solar system. </meta>
 <meta name="copyright">
     We kindly request the authors of any communications and
     publications using these data to let us know about them,
     include minimal citation to the reference and
     acknowledgements as presented below.
     <br/><br/>
-    Acknowledgement:<br/>
-    Courtesy:  mention SBNAF programme ++
+    Acknowledgement: TBD<br/>
+    Courtesy: Small Bodies Near and Far
     <br/><br/>
-    Reference:<br/>
+    Reference: TBD<br/>
     biblio reference
 </meta>
 	<meta name="creationDate">2019-10-18T00:00:00</meta>
 	<meta name="subject">asteroids</meta>
 	<meta name="subject">Solar system astronomy</meta>
 	<meta name="creator.name">Róbert Szakáts</meta>
-	<meta name="contact.email">tobe@completed.fr</meta>
-	<meta name="contact.address"></meta>
+	<meta name="contact.email">szakats.robert@csfk.mta.hu</meta>
+	<meta name="contact.address">https://konkoly.hu/personnel_hun.shtml</meta>
 	<meta name="referenceURL">https://ird.konkoly.hu</meta>
-	<meta name="instrument">IRAS</meta>
-	<meta name="facility">IRAS</meta>
+	<meta name="instrument">IRAS,AKARI,HSO,MSX,WISE</meta>
+	<meta name="facility">IRAS,AKARI,HSO,MSX,WISE</meta>
 	<meta name="source">various</meta>
 	<meta name="contentLevel">General</meta>
 	<meta name="contentLevel">University</meta>
@@ -38,8 +38,7 @@ blabla </meta>
 		<mixin spatial_frame_type="celestial"
 		optional_columns= "time_scale publisher bib_reference filter alt_target_name" >//epntap2#table-2_0</mixin>
 
-
-    		<column name="obsmode" type="text" ucd="meta.code;instr.setup" 
+    		<column name="obsmode" type="text" ucd="meta.code;instr.setup"
     		description="Observing mode"/>
 
     		<column name="ra" ucd="pos.eq.ra;meta.main"  type="double precision" unit="deg"
@@ -62,23 +61,23 @@ blabla </meta>
         	description="Uncertainty on the monochromatic flux density"/>
 
 
-    		<column name="abs_magnitude"  type="double precision" ucd="phys.magAbs" 
+    		<column name="abs_magnitude"  type="double precision" ucd="phys.magAbs"
         	description="Absolute visual magnitude in HG system, from JPL/Horizon"/>
-    		<column name="slope_parameter"  type="double precision" ucd="phot.flux;arith.ratio" 
+    		<column name="slope_parameter"  type="double precision" ucd="phot.flux;arith.ratio"
         	description="Slope parameter in HG system, from JPL/Horizon"/>
-    		<column name="magnitude"  type="double precision" ucd="phot.mag" 
+    		<column name="magnitude"  type="double precision" ucd="phot.mag"
         	description="Apparent visual magnitude, from JPL/Horizon"/>
-		  
-    		<column name="semi_major_axis"  type="double precision" ucd="phys.size.smajAxis" unit="au"	
+
+    		<column name="semi_major_axis"  type="double precision" ucd="phys.size.smajAxis" unit="au"
     		description="Semimajor axis of the target orbit"/>
-			<column name="inclination"  type="double precision" ucd="src.orbital.inclination" unit="deg"	
+			<column name="inclination"  type="double precision" ucd="src.orbital.inclination" unit="deg"
 			description="Inclination of the target orbit"/>
-			<column name="eccentricity"  type="double precision" ucd="src.orbital.eccentricity"	
+			<column name="eccentricity"  type="double precision" ucd="src.orbital.eccentricity"
 			description="Eccentricity of the target orbit"/>
 
-			<column name="mean_anomaly" type="double precision" ucd="src.orbital.meanAnomaly" unit="deg"	
+			<column name="mean_anomaly" type="double precision" ucd="src.orbital.meanAnomaly" unit="deg"
 			description="Mean anomaly at the epoch" verbLevel="15"/>
-			<column name="arg_perihel" type="double precision" ucd="src.orbital.periastron" unit="deg" 
+			<column name="arg_perihel" type="double precision" ucd="src.orbital.periastron" unit="deg"
 			description="Argument of perihelion" verbLevel="15"/>
 			<column name="long_asc" type="double precision" ucd="src.orbital.node" unit="deg"
 			description="Longitude of ascending node" verbLevel="15"/>
@@ -101,8 +100,79 @@ blabla </meta>
 
 
 
-			<column name="obsqual" tablehead="obsqual" type="text" ucd="meta.code.qual"   
+			<column name="obsqual" tablehead="obsqual" type="text" ucd="meta.code.qual"
 			description="Contamination and confusion flags and photometric quality flags"/>
+<!--
+			<column name="naifid" tablehead="naifid" type="integer" ucd="meta.id"
+			description="NASA’s Navigation and Ancillary Information Facility solar system object code of the target"/>
+-->
+			<column name="obsid" tablehead="observation_IDs" type="text" ucd="meta.id"
+			description="Mission-specific identifier of the observation, e.g. OBSID for Herschel measurements and AORKEY for Spitzer observations"/>
+
+<!--
+			<column name="observation_date" tablehead="datetime" type="text" ucd="time"
+			description="Observation date in the format YYYY:MM:DD hh:mm:ss.ss"/>
+-->
+			<column name="radius" tablehead="jpl_obj_radius" type="double precision" ucd="phys.size.radius" unit="km"
+			description="Estimated radius of the target as obtained from JPL Horizons"/>
+
+			<column name="albedo" tablehead="jpl_obj_albedo" type="double precision" ucd="phys"
+			description="Estimated V-band geometric albedo of the target as obtained from JPL Horizons."/>
+
+
+			<column name="ra_rate" tablehead="RA_rate" type="double precision" ucd="arith.rate" unit="arcsec/s"
+			description="The rate of change in right ascension."/>
+
+			<column name="dec_rate" tablehead="DEC_rate" type="double precision" ucd="arith.rate" unit="arcsec/s"
+			description="The rate of change in declination."/>
+
+			<column name="lighttime" tablehead="lighttime" type="double precision" ucd="time" unit="s"
+			description="The elapsed time since light (observed at print-time) would have left or reflected off a point at the center of the target."/>
+
+			<column name="solar_elongation" tablehead="solar_elongation_elong" type="double precision" ucd="pos.angDistance" unit="deg"
+			description="Target’s  apparent  solar  elongationseen   from   the   observer   location   at   print-time."/>
+<!--
+			<column name="oppostion_flag" tablehead="before_after_opposition" type="text" ucd="meta.code"
+			description="A flag regarding the target’s apparent position relative to the Sun in the observer’s sky. ’/T’ indicatestrailing, ’/L’ leading position with respect to the Sun."/>
+-->
+			<column name="ObsEclLon" tablehead="ObsEclLon" type="double precision" ucd="pos.ecliptic.lon" unit="deg"
+			description="Observer-centered  Earth  ecliptic-of-date longitude of the target center’s apparent position, adjusted for light-time, the gravitational deflection of light and stellar aberration as obtained by JPL/Horizons."/>
+
+			<column name="ObsEclLat" tablehead="ObsEclLat" type="double precision" ucd="pos.ecliptic.lat" unit="deg"
+			description="Observer-centered  Earth  ecliptic-of-date latitude of the target center’s apparent position, adjusted for light-time, the gravitational deflection of light and stellar aberration as obtained by JPL/Horizons."/>
+<!--
+			<column name="target_X_sun" tablehead="target_X_@sun" type="double precision" ucd="pos.cartesian.x" unit="au"
+			description="Sun-centered X Cartesian coordinate of the target body at observation mid-time, in the referenceframe defined in Archinal et al. (2011)."/>
+
+			<column name="target_Y_sun" tablehead="target_Y_@sun" type="double precision" ucd="pos.cartesian.y" unit="au"
+			description="Sun-centered Y Cartesian coordinate of the target body at observation mid-time, in the referenceframe defined in Archinal et al. (2011)."/>
+
+			<column name="target_Z_sun" tablehead="target_Z_@sun" type="double precision" ucd="pos.cartesian.z" unit="au"
+			description="Sun-centered Y Cartesian coordinate of the target body at observation mid-time, in the referenceframe defined in Archinal et al. (2011)."/>
+
+			<column name="target_X_observer" tablehead="target_X_@observer" type="double precision" ucd="pos.cartesian.x" unit="au"
+			description="Observer-centered X Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+
+			<column name="target_Y_observer" tablehead="target_Y_@observer" type="double precision" ucd="pos.cartesian.y" unit="au"
+			description="Observer-centered Y Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+
+			<column name="target_Z_observer" tablehead="target_Z_@observer" type="double precision" ucd="pos.cartesian.z" unit="au"
+			description="Observer-centered Z Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+
+			<column name="observer_X_sun" tablehead="observer_X_@sun" type="double precision" ucd="pos.cartesian.x" unit="au"
+			description="Sun-centered X Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+
+			<column name="observer_Y_sun" tablehead="observer_Y_@sun" type="double precision" ucd="pos.cartesian.y" unit="au"
+			description="Sun-centered Y Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+
+			<column name="observer_Z_sun" tablehead="observer_Z_@sun" type="double precision" ucd="pos.cartesian.z" unit="au"
+			description="Sun-centered Z Cartesian coordinate of the target body at observation mid-time, in the reference frame defined in Archinal et al. (2011)."/>
+-->
+		  <!--
+			<column name="" tablehead="" type="" ucd="" unit=""
+			description=""/>
+-->
+
 
 			<column name="data_calibration_desc" type="text" ucd="meta.note"
 			tablehead="data_calibration_desc"
@@ -154,7 +224,7 @@ blabla </meta>
 				<!-- Map custom and optional parameters -->
 
 				<var name="publisher">"Konkoly Observatory"</var>
-				<var key="bib_reference" source ="documents_references" /> 
+				<var key="bib_reference" source ="documents_references" />
  				<var key="sun_distance_min" source="heliocentric_distance_r" />
 				<var key="sun_distance_max" source="heliocentric_distance_r" />
 				<var key="target_distance_min">149597870.7 * float(@obscentric_distance_delta)</var>
@@ -190,12 +260,41 @@ blabla </meta>
 				<var key="filter" source ="band_filter" />
 
 				<var key="obsqual" source ="quality_flags" />
-				<var key="data_calibration_desc" source ="comments_remarks" /> 
+				<var key="data_calibration_desc" source ="comments_remarks" />
+<!--
+				<var key="naifid" source ="naifid" />
+-->
+				<var key="obsid" source ="observation_IDs" />
+<!--
+				<var key="observation_date" source ="datetime" />
+-->
+				<var key="radius" source ="jpl_obj_radius" />
+				<var key="albedo" source ="jpl_obj_albedo" />
+				<var key="ra_rate" source ="RA_rate" />
+				<var key="dec_rate" source ="DEC_rate" />
+				<var key="lighttime" source ="lighttime" />
+				<var key="solar_elongation" source ="solar_elongation_elong" />
+<!--
+				<var key="oppostion_flag" source ="before_after_opposition" />
+-->
+				<var key="ObsEclLon" source ="ObsEclLon" />
+				<var key="ObsEclLat" source ="ObsEclLat" />
+<!--
+				<var key="target_X_sun" source ="target_X_@sun" />
+				<var key="target_Y_sun" source ="target_Y_@sun" />
+				<var key="target_Z_sun" source ="target_Z_@sun" />
+				<var key="target_X_observer" source ="target_X_@observer" />
+				<var key="target_Y_observer" source ="target_Y_@observer" />
+				<var key="target_Z_observer" source ="target_Z_@observer" />
+				<var key="observer_X_sun" source ="observer_X_@sun" />
+				<var key="observer_Y_sun" source ="observer_Y_@sun" />
+				<var key="observer_Z_sun" source ="observer_Z_@sun" />
+-->
 
 				<!-- store arguments for datalink -->
 				<var key="ds_id">"asteroid/" + @targetname + "/" + str(float(@observation_mid_time))</var>
 				<var key="datalink_url">("\getConfig{web}{serverURL}/\rdId/epdl/dlmeta"
-					+"?ID="+urllib.quote(@ds_id))</var> 
+					+"?ID="+urllib.quote(@ds_id))</var>
 
 
 				<apply procDef="//epntap2#populate-2_0" name="fillepn">
@@ -235,7 +334,7 @@ blabla </meta>
 
 					<bind key="phase_min">@phase_angle_alpha</bind>
 					<bind key="phase_max">@phase_angle_alpha</bind>
-		
+
 					<bind key="c1min">@Right_Ascension_RA</bind>
 					<bind key="c1max">@Right_Ascension_RA</bind>
 					<bind key="c2min">@Declination_DEC</bind>
@@ -244,18 +343,18 @@ blabla </meta>
 					<bind key="dataproduct_type">"ci"</bind>
 					<bind key="measurement_type">"phot.flux.density;em.IR"</bind>
 
-					<bind key="service_title">"sbnaf"</bind>
+					<bind key="service_title">"SBNAF"</bind>
 					<!-- from web site info -->
 					<bind key="creation_date">"2019-02-08T00:00:00.00"</bind>
 					<bind key="release_date">"2019-03-31T00:00:00.00"</bind>
 					<bind key="modification_date">@data_last_modification</bind>
 
 					<bind key="instrument_host_name">@observatory_project+'#'+@observatory_code</bind>
-					<bind key="instrument_name">@instrument_detector</bind> 
+					<bind key="instrument_name">@instrument_detector</bind>
 
 				</apply>
 
-			</rowmaker> 
+			</rowmaker>
 		</make>
 	</data>
 
